@@ -1,7 +1,14 @@
 module Houston::Conversations
   class Configuration
 
-    # Define configuration DSL here
+
+    def listen_for(*args, &block)
+      Houston::Conversations.listeners.listen_for(*args, &block)
+    end
+
+    def overhear(*args, &block)
+      Houston::Conversations.listeners.overhear(*args, &block)
+    end
 
   end
 end
