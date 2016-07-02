@@ -1,4 +1,6 @@
-# desc "Explaining what the task does"
-# task :conversations do
-#   # Task goes here
-# end
+require "houston/conversations/tty_session"
+
+desc "Test conversations with Houston"
+task :talk => :environment do
+  Houston::Conversations::TtySession.new.listen!
+end
