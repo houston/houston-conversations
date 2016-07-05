@@ -1,7 +1,7 @@
 require "concurrent/array"
 
 module Houston
-  module Slack
+  module Conversations
     class Conversation
 
       def initialize(channel, sender)
