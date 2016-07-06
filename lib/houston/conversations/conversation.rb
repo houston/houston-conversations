@@ -11,7 +11,7 @@ module Houston
       end
 
       def listen_for(*args, &block)
-        Houston::Conversations.listen_for(*args, &block).tap do |listener|
+        Houston::Conversations.listeners.listen_for(*args, &block).tap do |listener|
           listener.conversation = self
           listeners.push listener
         end
