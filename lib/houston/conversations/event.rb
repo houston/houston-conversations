@@ -34,7 +34,7 @@ module Houston
       end
 
       def stop_listening!
-        listener.stop_listening!
+        match.listener.stop_listening!
       end
 
       def responding
