@@ -27,29 +27,13 @@ module Houston
 
         event = Houston::Conversations::Event.new(match)
         yield event if block_given?
-        invoke! match.listener, event
+        match.listener.call_async event
 
         # Invoke only one listener per message
         return true
       end
 
       false
-    end
-
-  private
-
-    def invoke!(listener, event)
-      Rails.logger.debug "\e[35m[conversations:hear] #{event.message}\e[0m"
-
-      Houston.async do
-        begin
-          listener.call(event)
-        rescue Exception # rescues StandardError by default; but we want to rescue and report all errors
-          Houston.report_exception $!, parameters: event.to_h
-          Rails.logger.error "\e[31m[conversations:exception] (#{$!.class}) #{$!.message}\n  #{$!.backtrace.join("\n  ")}\e[0m"
-          event.reply "An error occurred when I was trying to answer you"
-        end
-      end
     end
 
   end
