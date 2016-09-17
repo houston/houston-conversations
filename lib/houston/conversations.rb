@@ -25,8 +25,12 @@ module Houston
 
       listeners.hear(message).each do |match|
         event = Houston::Conversations::Event.new(match)
-        yield event if block_given?
-        match.listener.call_async event
+
+        if block_given?
+          yield event, match.listener
+        else
+          match.listener.call_async event
+        end
 
         # Invoke only one listener per message
         return true
