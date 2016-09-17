@@ -12,7 +12,7 @@ module Houston
 
 
       def message
-        match.message
+        match.message.original_message
       end
 
       def channel

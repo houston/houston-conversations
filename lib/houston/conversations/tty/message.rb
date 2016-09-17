@@ -1,18 +1,21 @@
-require "houston/conversations/message"
 require "houston/conversations/tty/channel"
 require "houston/conversations/tty/user"
 
 module Houston
   module Conversations
     module Tty
-      class Message < ::Houston::Conversations::Message
-        attr_reader :session
+      class Message
+        attr_reader :session, :text
 
-        def initialize(session, text, params={})
+        def initialize(session, text)
           @session = session
-          super text, params
-          contexts << :conversation
-          contexts << :tty
+          @text = text
+        end
+
+        alias :to_s :text
+
+        def contexts
+          [ :conversation, :tty ]
         end
 
         def channel

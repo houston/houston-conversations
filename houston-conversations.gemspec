@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.test_files = Dir["test/**/*"]
 
   spec.add_dependency "houston-core", ">= 0.8.0.pre"
-  spec.add_dependency "attentive"
+  spec.add_dependency "attentive", "~> 0.3.3"
   spec.add_dependency "concurrent-ruby"
 
   spec.add_development_dependency "bundler", "~> 1.11.2"

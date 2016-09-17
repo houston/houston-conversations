@@ -1,7 +1,6 @@
 require "houston/conversations/engine"
 require "houston/conversations/configuration"
 require "houston/conversations/listener_collection"
-require "houston/conversations/message"
 require "houston/conversations/event"
 
 module Houston
@@ -21,10 +20,10 @@ module Houston
     # Matches a message against all listeners
     # and invokes the first listener that mathes
     def hear(message, params={})
-      raise ArgumentError, "`message` is a #{message.class.name} but must be a subclass of Houston::Conversations::Message" unless message.is_a?(Houston::Conversations::Message)
+      raise ArgumentError, "`message` must respond to :channel" unless message.respond_to?(:channel)
+      raise ArgumentError, "`message` must respond to :sender" unless message.respond_to?(:sender)
 
       listeners.hear(message).each do |match|
-
         event = Houston::Conversations::Event.new(match)
         yield event if block_given?
         match.listener.call_async event
