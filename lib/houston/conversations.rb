@@ -17,6 +17,14 @@ module Houston
       @listeners ||= Houston::Conversations::ListenerCollection.new
     end
 
+    def wake_words
+      Attentive.invocations
+    end
+
+    def wake_words=(value)
+      Attentive.invocations = value
+    end
+
     # Matches a message against all listeners
     # and invokes the first listener that mathes
     def hear(message, params={})
