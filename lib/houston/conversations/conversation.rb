@@ -17,8 +17,8 @@ module Houston
         end
       end
 
-      def includes?(e)
-        e.channel == channel && e.sender == sender
+      def includes?(message)
+        message.channel == channel && message.sender == sender
       end
 
       def reply(*messages)
