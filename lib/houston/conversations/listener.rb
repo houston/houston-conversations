@@ -7,7 +7,7 @@ module Houston
 
       def matches_context?(message)
         contexts = message.contexts.dup
-        contexts << :conversation if conversation && conversation.includes?(message)
+        contexts << :conversation if conversation && conversation.includes?(message.original_message)
 
         return false unless contexts.superset? @required_contexts
         return false unless contexts.disjoint? @prohibited_contexts
