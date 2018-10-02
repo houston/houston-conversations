@@ -22,6 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "attentive", "~> 0.3.3"
   spec.add_dependency "concurrent-ruby"
 
-  spec.add_development_dependency "bundler", "~> 1.11.2"
+  spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake", "~> 10.0"
 end
